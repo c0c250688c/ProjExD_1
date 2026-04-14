@@ -22,16 +22,38 @@ def main():
 
         key_lst = pg.key.get_pressed() #練習10.3
 
+        
+        # if key_lst[pg.K_DOWN]:
+            # kk_rct.move_ip(0,1)#練習10.4
+        # if key_lst[pg.K_UP]:
+            # kk_rct.move_ip(0,-1)
+        # if key_lst[pg.K_LEFT]:
+            # kk_rct.move_ip(-1,0)
+        # if key_lst[pg.K_RIGHT]:
+            # kk_rct.move_ip(2,0) #課題1.2
+        # else:
+            # kk_rct.move_ip(-1,0) #課題1.1
+        x = -1
+        y = 0
         if key_lst[pg.K_DOWN]:
-            kk_rct.move_ip(0,1)#練習10.4
+            DOWN = 1
+            y = DOWN
         if key_lst[pg.K_UP]:
-            kk_rct.move_ip(0,-1)
+            UP = -1
+            y = UP
+        if key_lst[pg.K_DOWN] and key_lst[pg.K_UP]:
+            y = 0
         if key_lst[pg.K_LEFT]:
-            kk_rct.move_ip(-1,0)
+            LEFT = -2
+            x = LEFT
         if key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip(2,0) #課題1.2
-        else:
-            kk_rct.move_ip(-1,0) #課題1.1
+            RIGHT = 2
+            x = RIGHT
+        if key_lst[pg.K_LEFT] and key_lst[pg.K_RIGHT]:
+            x = -1
+        kk_rct.move_ip(x,y)
+
+
         x = tmr%3200 #練習5,9
         screen.blit(bg_img, [-x, 0]) #練習2
         screen.blit(bg_img2, [-x+1600, 0]) #練習7
@@ -40,7 +62,6 @@ def main():
         pg.display.update()
         tmr += 1        
         clock.tick(200) #練習6
-
 
 if __name__ == "__main__":
     pg.init()
